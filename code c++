@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+
+ long long memo[100005];
+
+ long long fibo(int num){
+	
+	if(memo[num] != -1){
+		return memo[num];
+	}
+	
+	if(num <= 1) {
+		return num;	
+	}
+	
+	return memo[num] = fibo(num-1) + fibo(num-2);
+}
+
+long long gcd( long long a, long long b){
+	
+	while(b > 0){
+		 long long c = a%b;
+		a = b;
+		b = c;
+	}
+	
+	return a;
+}
+
+int main(){
+	
+	memset(memo,-1,sizeof(memo));
+	
+	int input;
+	
+	scanf("%d",&input);
+	
+	for(int a=0;a<input;a++){
+		int i,j;
+		
+		scanf("%d %d",&i,&j);
+		
+		long long temp = gcd(i,j);
+		
+		printf("%ld\n",fibo(temp));		
+	}	
+	
+	return 0;
+}
